@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heguru Learning Centre</title>
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #faf9f6;
+            --accent: #c4463a;
+            --muted: #6b6b6b;
+            --border: #e0ddd8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.7;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        nav .logo span { color: var(--accent); }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--ink); }
+
+        /* --- Hero --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-jp {
+            font-size: 1rem;
+            letter-spacing: 0.5em;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: normal;
+            line-height: 1.2;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border: 1px solid var(--ink);
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        /* --- Sections --- */
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        section p {
+            color: var(--muted);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--border);
+            margin: 0 auto;
+        }
+
+        /* --- Principles --- */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .principle h3 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-bottom: 0.8rem;
+        }
+
+        .principle p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .principle-number {
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Benefits --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit {
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .benefit h3 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 0.6rem;
+        }
+
+        .benefit p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* --- Contact --- */
+        .contact-section {
+            background: #f4f2ed;
+            max-width: 100%;
+            padding: 6rem 2rem;
+        }
+
+        .contact-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        form {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            background: var(--paper);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--ink);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        button[type="submit"] {
+            padding: 0.9rem 2.5rem;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            font-family: inherit;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-self: flex-start;
+        }
+
+        button[type="submit"]:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .form-success {
+            display: none;
+            padding: 1rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 600px) {
+            nav ul { display: none; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            section { padding: 4rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><span>Heguru</span> Learning Centre</div>
+        <ul>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <p class="hero-jp">ヘーグル教育</p>
+        <h1>Unlock Your Child's Full Potential</h1>
+        <p>A proven Japanese whole-brain development method nurturing creativity, memory, and accelerated learning from an early age.</p>
+        <a href="#contact" class="hero-cta">Book a Trial Session</a>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- The Method -->
+    <section id="method">
+        <p class="section-label">The Method</p>
+        <h2>What is Heguru?</h2>
+        <p>Founded in Japan by Ruiko and Hirotada Henmi, the Heguru Method is a right-brain development programme designed for children from infancy through primary school. It activates the immense potential of the right hemisphere through carefully structured, high-speed sensory lessons.</p>
+        <p>Unlike conventional teaching that emphasises repetition and logic, Heguru engages the intuitive, creative brain — the part responsible for photographic memory, speed reading, and extraordinary processing ability. The result is a child who learns faster, thinks deeper, and creates freely.</p>
+
+        <div class="principles">
+            <div class="principle">
+                <p class="principle-number">01</p>
+                <h3>Right-Brain Activation</h3>
+                <p>High-speed, image-rich lessons stimulate the right hemisphere, unlocking photographic memory and rapid information processing.</p>
+            </div>
+            <div class="principle">
+                <p class="principle-number">02</p>
+                <h3>Whole-Brain Integration</h3>
+                <p>As children grow, left and right hemispheres learn to work together — producing balanced thinkers with both creativity and analytical skill.</p>
+            </div>
+            <div class="principle">
+                <p class="principle-number">03</p>
+                <h3>Joyful Learning</h3>
+                <p>Lessons are fast-paced, varied, and playful. Children are never pressured — engagement comes naturally through curiosity and wonder.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Benefits -->
+    <section id="benefits">
+        <p class="section-label">The Value</p>
+        <h2>Why Heguru?</h2>
+        <p>Children who train with the Heguru Method develop capabilities that serve them for life — not just in academics, but in how they approach every challenge.</p>
+
+        <div class="benefits-grid">
+            <div class="benefit">
+                <h3>Photographic Memory</h3>
+                <p>Rapid image-flash training develops the ability to absorb and recall large volumes of information with remarkable accuracy.</p>
+            </div>
+            <div class="benefit">
+                <h3>Speed Reading</h3>
+                <p>Children learn to process written material at extraordinary speed while maintaining deep comprehension.</p>
+            </div>
+            <div class="benefit">
+                <h3>Enhanced Creativity</h3>
+                <p>Right-brain stimulation fosters original thinking, imagination, and the confidence to express unique ideas.</p>
+            </div>
+            <div class="benefit">
+                <h3>Emotional Intelligence</h3>
+                <p>The method nurtures empathy, intuition, and self-awareness alongside intellectual development.</p>
+            </div>
+            <div class="benefit">
+                <h3>Concentration & Focus</h3>
+                <p>Fast-paced lesson structures naturally build sustained attention and the ability to focus deeply.</p>
+            </div>
+            <div class="benefit">
+                <h3>Love of Learning</h3>
+                <p>By making learning joyful from the start, children develop an intrinsic motivation that lasts a lifetime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <p class="section-label">Get in Touch</p>
+            <h2>Begin Your Child's Journey</h2>
+            <p>Interested in learning more or booking a trial session? Fill in the form below and we will be in touch shortly.</p>
+
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="parentName">Parent's Name</label>
+                        <input type="text" id="parentName" name="parentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="childAge">Child's Age</label>
+                        <select id="childAge" name="childAge" required>
+                            <option value="" disabled selected>Select age</option>
+                            <option value="0-1">Under 1 year</option>
+                            <option value="1-2">1 – 2 years</option>
+                            <option value="2-3">2 – 3 years</option>
+                            <option value="3-4">3 – 4 years</option>
+                            <option value="4-6">4 – 6 years</option>
+                            <option value="6-9">6 – 9 years</option>
+                            <option value="9-12">9 – 12 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us a little about your child and what you're looking for..."></textarea>
+                </div>
+                <button type="submit">Send Enquiry</button>
+            </form>
+            <div class="form-success" id="formSuccess">
+                Thank you for your enquiry. We will be in touch within 24 hours.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Heguru Learning Centre. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
