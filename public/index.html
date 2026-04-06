@@ -48,6 +48,11 @@
 
         nav .logo span { color: var(--accent); }
 
+        nav .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -64,6 +69,38 @@
         }
 
         nav a:hover { color: var(--ink); }
+
+        nav a.active { color: var(--ink); }
+
+        /* --- Mobile Menu Toggle --- */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: var(--ink);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
 
         /* --- Hero --- */
         .hero {
@@ -298,7 +335,23 @@
 
         /* --- Responsive --- */
         @media (max-width: 600px) {
-            nav ul { display: none; }
+            .menu-toggle { display: block; }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(250, 249, 246, 0.98);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            nav ul.open { display: flex; }
+
             .benefits-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
             section { padding: 4rem 1.5rem; }
@@ -308,8 +361,13 @@
 <body>
 
     <nav>
-        <div class="logo"><span>Heguru</span> Learning Centre</div>
-        <ul>
+        <div class="logo"><a href="#top"><span>Heguru</span> Learning Centre</a></div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="navMenu">
             <li><a href="#method">Method</a></li>
             <li><a href="#benefits">Benefits</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -317,7 +375,7 @@
     </nav>
 
     <!-- Hero -->
-    <header class="hero">
+    <header class="hero" id="top">
         <p class="hero-jp">ヘーグル教育</p>
         <h1>Unlock Your Child's Full Potential</h1>
         <p>A proven Japanese whole-brain development method nurturing creativity, memory, and accelerated learning from an early age.</p>
@@ -442,10 +500,80 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when a nav link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('open');
+                navMenu.classList.remove('open');
+            });
+        });
+
+        // Active nav link highlighting on scroll
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const navLinks = navMenu.querySelectorAll('a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 100;
+                if (window.scrollY >= top) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            this.style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const data = {
+                parentName: form.parentName.value,
+                childAge: form.childAge.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                message: form.message.value
+            };
+
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.textContent = 'Send Enquiry';
+                    submitBtn.disabled = false;
+                }
+            } catch (err) {
+                alert('Could not reach the server. Please try again later.');
+                submitBtn.textContent = 'Send Enquiry';
+                submitBtn.disabled = false;
+            }
         });
     </script>
 

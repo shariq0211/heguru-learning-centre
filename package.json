@@ -1,0 +1,19 @@
+{
+  "name": "heguru-learning-centre",
+  "version": "1.0.0",
+  "description": "Heguru Learning Centre website - Japanese whole-brain development method",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "heguru",
+    "education",
+    "right-brain"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
