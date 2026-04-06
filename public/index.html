@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heguru Learning Centre</title>
+    <title>Heguru Learning Centre Singapore Northeast</title>
     <style>
         :root {
             --ink: #1a1a1a;
@@ -57,6 +57,14 @@
             list-style: none;
             display: flex;
             gap: 2rem;
+        }
+
+        .nav-location {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-left: 0.5rem;
         }
 
         nav a {
@@ -324,6 +332,53 @@
             text-align: center;
         }
 
+        /* --- Team Stats --- */
+        .team-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .team-qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .quality {
+            padding: 1.8rem;
+            border: 1px solid var(--border);
+        }
+
+        .quality h3 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 0.6rem;
+        }
+
+        .quality p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -361,7 +416,7 @@
 <body>
 
     <nav>
-        <div class="logo"><a href="#top"><span>Heguru</span> Learning Centre</a></div>
+        <div class="logo"><a href="#top"><span>Heguru</span> Learning Centre</a><span class="nav-location">Singapore Northeast</span></div>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -370,15 +425,16 @@
         <ul id="navMenu">
             <li><a href="#method">Method</a></li>
             <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#teachers">Teachers</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Hero -->
     <header class="hero" id="top">
-        <p class="hero-jp">ヘーグル教育</p>
+        <p class="hero-jp">ヘーグル教育 &nbsp;·&nbsp; Singapore Northeast</p>
         <h1>Unlock Your Child's Full Potential</h1>
-        <p>A proven Japanese whole-brain development method nurturing creativity, memory, and accelerated learning from an early age.</p>
+        <p>Singapore Northeast's home for the Heguru Method — a proven Japanese whole-brain development programme nurturing creativity, memory, and accelerated learning from an early age.</p>
         <a href="#contact" class="hero-cta">Book a Trial Session</a>
     </header>
 
@@ -446,12 +502,52 @@
         </div>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- Teachers -->
+    <section id="teachers">
+        <p class="section-label">Our Instructors</p>
+        <h2>Taught by Those Who Know It Best</h2>
+        <p>Our instructors bring a rare depth of expertise to every lesson — formally trained in Japan at the source of the Heguru Method, and dedicated entirely to the growth of each child in their care.</p>
+        <p>With over 15 years of combined experience across our team of five, you can be confident that your child is learning from some of the most qualified Heguru practitioners in Singapore.</p>
+
+        <div class="team-stats">
+            <div>
+                <p class="stat-number">5</p>
+                <p class="stat-label">Dedicated Instructors</p>
+            </div>
+            <div>
+                <p class="stat-number">15+</p>
+                <p class="stat-label">Years Combined Experience</p>
+            </div>
+            <div>
+                <p class="stat-number">JP</p>
+                <p class="stat-label">Trained in Japan</p>
+            </div>
+        </div>
+
+        <div class="team-qualities">
+            <div class="quality">
+                <h3>Japan-Certified</h3>
+                <p>Every instructor is trained and certified directly through Heguru's programmes in Japan — ensuring the method is delivered with complete fidelity and expertise.</p>
+            </div>
+            <div class="quality">
+                <h3>Child-Centred</h3>
+                <p>Our team is chosen not only for their knowledge but for their warmth. Each lesson is delivered with patience, encouragement, and a genuine love for teaching.</p>
+            </div>
+            <div class="quality">
+                <h3>Continually Developing</h3>
+                <p>Our instructors remain active within the global Heguru community, attending ongoing training to stay at the forefront of the method's latest research and techniques.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section class="contact-section" id="contact">
         <div class="contact-inner">
             <p class="section-label">Get in Touch</p>
             <h2>Begin Your Child's Journey</h2>
-            <p>Interested in learning more or booking a trial session? Fill in the form below and we will be in touch shortly.</p>
+            <p>Interested in learning more or booking a trial session at our Singapore Northeast centre? Fill in the form below and we will be in touch shortly.</p>
 
             <form id="contactForm">
                 <div class="form-row">
@@ -496,7 +592,7 @@
     </section>
 
     <footer>
-        &copy; 2026 Heguru Learning Centre. All rights reserved.
+        &copy; 2026 Heguru Learning Centre Singapore Northeast. All rights reserved.
     </footer>
 
     <script>
